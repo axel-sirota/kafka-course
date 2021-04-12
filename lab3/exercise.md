@@ -53,7 +53,19 @@ String stateString =
 
 8- Run in your IDE, or run in Maven using mvn exec:java -Dexec.mainClass="com.honolulu.Main" -Dexec.cleanupDaemonThreads=false
 
-9- Shut down everything:
+9- Verify with the console consumer you got all messages.
+
+```
+./bin/kafka-console-consumer \
+  --bootstrap-server broker-2:9092 \
+  --topic my_orders --from-beginning \
+  --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \
+  --value-deserializer org.apache.kafka.common.serialization.DoubleDeserializer \
+  --property print.key=true \
+  --property key.separator=,
+```
+
+10- Shut down everything:
 
 ```
 docker-compose down

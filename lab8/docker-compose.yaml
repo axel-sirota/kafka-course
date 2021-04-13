@@ -83,3 +83,7 @@ services:
     container_name: postgres
     ports:
       - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres_db
+      - POSTGRES_USER=admin_db
+      - POSTGRES_PASSWORD=admin_12345678

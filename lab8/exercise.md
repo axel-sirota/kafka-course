@@ -1,4 +1,4 @@
-## Lab 7
+## Lab 8
 
 0- In this folder run:
 
@@ -6,54 +6,58 @@
 docker-compose up -d
 ```
 
-1- Copy the directory structure we had in the previous labs and the `pom.xml`
 
-Now run `mvn clean compile`
-
-2- Go to kafka folder and run kafka-topics
+1- Go to kafka folder and run kafka-topics
 ```
-./bin/kafka-topics --create --zookeeper localhost:2181 \
---replication-factor 2 --partitions 3 --topic disasters
-```
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_statuses --config cleanup.policy=compact
 
-3- In the `src/main/avro` folder create a schema for `DisasterValue` that includes the following fields:
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_offsets --config cleanup.policy=compact
 
-```
-| Name of Field   | Type          |   |   |   |
-|-----------------|---------------|---|---|---|
-| disasterType    | string        |   |   |   |
-| intensity       | Intensity     |   |   |   |
-| recommendations | Array[String] |   |   |   |
+kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_configs --config cleanup.policy=compact
 ```
 
-Such that the Intensity Schema is:
+3- Create a Connect distributed instance:
 
 ```
-| Name of Field | Type   |   |   |   |
-|---------------|--------|---|---|---|
-| scale         | string |   |   |   |
-| measurement   | int    |   |   |   |
-|               |        |   |   |   |
+bin/connect-distributed.sh worker.properties
 ```
 
-You can use the model on this same folder `DisasterValue.asvc`
+4- In a new tab change on the file `worker.properties` the `rest.port` and bring up a new Connect distributed instances
 
-4- Ensure that you generate a class from the avro by invoking `mvn generate-sources`. Verify that the classes are created by looking in the src/main/java/com/honolulu/model folder.
-
-5- Create a DisasterProducer that sends DisasterValues into the disasters topic. Recall to add to the Properties object the SCHEMA_REGISTRY_URL_CONFIG property.
-
-6- Create the neccesary Consumer. Include the following two properties:
+5- Deploy using the REST API a new File Connector with 4 tasks:
 
 ```
-props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
-props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+curl -i -X PUT -H "Accept:application/json" -H "Content-Type:application/json"  "http://localhost:8083/connectors/file-sink/config" -d '{
+        "connector.class":"FileStreamSink",
+        "tasks.max": "4",
+        "file":"./file-log.txt",
+        "topics":"connect-log"
+}'
 ```
 
-7- Execute both classes with mvn:exec as we have been doing and verify this sends actual objects serialized.
+6- Check in the /status endpoint of the connector that the 4 tasks are running as seperate threads balanced across the two Distributed instances
 
-8- Shut down everything:
+7- Kill one instance with CTRL+C and verify later with `/status` that the tasks moved to the remaining instance
+
+8- Bring up the instance again and verify the rebalancing
+
+9- (optional) Create a Producer to verify that this effectively works as a connector.
+
+10- Shut down everything:
 
 ```
 docker-compose down
 ```
 
+Homework: Test with the ElasticSearch connector and the following config:
+
+```
+  "connector.class": "io.confluent.connect.elasticsearch.ElasticsearchSinkConnector",
+  "tasks.max": "4", 
+  "topics": "honolulu-topic", 
+  "key.ignore": "true", "schema.ignore": "true", 
+  "connection.url": "http://elasticsearch:9200", 
+  "type.name": "kafka-connect", 
+  "name": "elasticsearch-connector"
+```
+  

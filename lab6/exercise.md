@@ -1,4 +1,4 @@
-## Lab 9
+## Lab 6
 
 0- In this folder run:
 

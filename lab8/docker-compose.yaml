@@ -69,21 +69,3 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
-  
-  mongo:
-    image: mongo:4.4
-    hostname: mongo
-    container_name: mongo
-    ports:
-      - 27017:27017
-  
-  postgres:
-    image: postgres:13.2
-    hostname: postgres
-    container_name: postgres
-    ports:
-      - 5432:5432
-    environment:
-      - POSTGRES_DB=postgres_db
-      - POSTGRES_USER=admin_db
-      - POSTGRES_PASSWORD=admin_12345678

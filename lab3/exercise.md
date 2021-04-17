@@ -23,7 +23,7 @@ Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
 ```
-./bin/kafka-topics --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic my_orders
 ```
 
@@ -56,7 +56,7 @@ String stateString =
 9- Verify with the console consumer you got all messages.
 
 ```
-./bin/kafka-console-consumer \
+./bin/windows/kafka-console-consumer.bat \
   --bootstrap-server broker-2:9092 \
   --topic my_orders --from-beginning \
   --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \

@@ -13,7 +13,7 @@ Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
 ```
-./bin/kafka-topics --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic connect-log
 ```
 
@@ -22,7 +22,7 @@ Now run `mvn clean compile`
 4- Create a Connect standalone instance:
 
 ```
-bin/connect-standalone.sh worker.properties filesink.properties
+bin/windows/connect-standalone.bat worker.properties filesink.properties
 ```
 
 5- Execute the producer sending some log data. 

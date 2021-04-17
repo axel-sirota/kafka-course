@@ -9,7 +9,7 @@ docker-compose up -d
 
 1- Go to kafka folder and run kafka-topics
 ```
-./bin/kafka-topics --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 1 --partitions 3 --topic my_orders
 ```
 
@@ -20,7 +20,7 @@ docker-compose up -d
 4- Increase the replication by using the file `increase_replication.json`
 
 ```
-./bin/kafka-reassign-partitions --zookeeper localhost:2181 \
+./bin/windows/kafka-reassign-partitions.bat --zookeeper localhost:2181 \
 --reassignment-json-file increase_replication.json --execute
 ```
 

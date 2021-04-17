@@ -12,13 +12,13 @@ Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
 ```
-./bin/kafka-topics --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic new-driver
 
-./bin/kafka-topics --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic new-driver-retry
 
-./bin/kafka-topics --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 1 --partitions 1 --topic new-driver-dlq
 ```
 

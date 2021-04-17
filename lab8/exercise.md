@@ -9,17 +9,17 @@ docker-compose up -d
 
 1- Go to kafka folder and run kafka-topics
 ```
-kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_statuses --config cleanup.policy=compact
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_statuses --config cleanup.policy=compact
 
-kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_offsets --config cleanup.policy=compact
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_offsets --config cleanup.policy=compact
 
-kafka-topics --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_configs --config cleanup.policy=compact
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic kafka_connect_configs --config cleanup.policy=compact
 ```
 
 3- Create a Connect distributed instance:
 
 ```
-bin/connect-distributed.sh worker.properties
+bin/connect-distributed.bat worker.properties
 ```
 
 4- In a new tab change on the file `worker.properties` the `rest.port` and bring up a new Connect distributed instances

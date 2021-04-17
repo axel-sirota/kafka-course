@@ -17,7 +17,7 @@ Now run `mvn clean compile`
 4- Run in seperate tabs the Producer, the Windowing Streams Application, and also run a consumer:
 
 ```
-kafka-console-consumer \
+kafka-console-consumer.bat \
   --bootstrap-server broker-1:9092 \
   --topic RawTempReadings --from-beginning \
   --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \

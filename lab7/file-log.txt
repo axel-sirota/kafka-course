@@ -1,0 +1,4 @@
+This is a log
+This class rocks, except for myself
+I like my logs very much, because I can audit them
+This is another producer

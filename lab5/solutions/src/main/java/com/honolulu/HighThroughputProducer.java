@@ -22,7 +22,7 @@ public class HighThroughputProducer {
 
 		props.put(ProducerConfig.ACKS_CONFIG, "0");
 		props.put(ProducerConfig.LINGER_MS_CONFIG, "5");
-		props.put(ProducerConfig.BATCH_SIZE_CONFIG, "16384");
+		props.put(ProducerConfig.BATCH_SIZE_CONFIG, "512");
 		props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "10");
 
 		KafkaProducer<String, String> producer = new KafkaProducer<>(props);

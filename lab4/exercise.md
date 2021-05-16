@@ -48,8 +48,6 @@ These can be in 3 seperate tabs.
 
 7- Verify each correct consumer got the correct message.
 
-8- Use the REST API to verify the consumer group
-
 8- Shut down everything:
 
 ```

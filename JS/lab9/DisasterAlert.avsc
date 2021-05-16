@@ -1,0 +1,41 @@
+{
+  "fields": [
+    {
+      "name": "disasterType",
+      "type": "string"
+    },
+    {
+      "name": "intensity",
+      "type": {
+        "type": "record",
+        "name": "Intensity",
+        "fields": [
+          {
+            "name": "scale",
+            "type": "string"
+          },
+          {
+            "name": "measurement",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "recommendations",
+      "type": {
+        "type": "array",
+        "name": "Recommendations",
+        "items": [
+          {
+            "type": "string",
+            "name": "recommendation"
+          }
+        ]
+      }
+    }
+  ],
+  "name": "DisasterValue",
+  "namespace": "com.honolulu.model",
+  "type": "record"
+}

@@ -22,17 +22,28 @@ Note: In Windows do it without `-p`
 Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
+
+*Windows*
+
 ```
 ./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic my_orders
 ```
+
+*Unix*
+
+```
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+--replication-factor 2 --partitions 3 --topic my_orders
+```
+
 
 3- Add the following two lines to the /etc/hosts files:
 
 127.0.0.1 broker-1
 127.0.0.1 broker-2
 
-In Mac this should be in the file `/etc/hosts` and in Windows the file `c:\Windows\System32\Drivers\etc\hosts`
+In Unix this should be in the file `/etc/hosts` and in Windows the file `c:\Windows\System32\Drivers\etc\hosts`
 
 4- Create a producer called Main inside of a package com.honolulu
 
@@ -55,8 +66,22 @@ String stateString =
 
 9- Verify with the console consumer you got all messages.
 
+*Windows*
+
 ```
 ./bin/windows/kafka-console-consumer.bat \
+  --bootstrap-server broker-2:9092 \
+  --topic my_orders --from-beginning \
+  --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \
+  --value-deserializer org.apache.kafka.common.serialization.DoubleDeserializer \
+  --property print.key=true \
+  --property key.separator=,
+```
+
+*Unix*
+
+```
+./bin/kafka-console-consumer.sh \
   --bootstrap-server broker-2:9092 \
   --topic my_orders --from-beginning \
   --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \

@@ -12,8 +12,18 @@ docker-compose up -d
 Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
+
+*Windows*
+
 ```
 ./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+--replication-factor 2 --partitions 3 --topic connect-log
+```
+
+*Unix*
+
+```
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic connect-log
 ```
 
@@ -21,8 +31,16 @@ Now run `mvn clean compile`
 
 4- Create a Connect standalone instance:
 
+*Windows*
+
 ```
 bin/windows/connect-standalone.bat worker.properties filesink.properties
+```
+
+*Unix*
+
+```
+bin/connect-standalone.sh worker.properties filesink.properties
 ```
 
 5- Execute the producer sending some log data. 

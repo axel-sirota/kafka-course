@@ -18,11 +18,24 @@ Note: In Windows do it with `copy` instead of `cp` and `\` instead of `/`.
 Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
+
+*Windows*
+
 ```
 ./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic hurricane
 
 ./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+--replication-factor 2 --partitions 3 --topic flood
+```
+
+*Unix*
+
+```
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+--replication-factor 2 --partitions 3 --topic hurricane
+
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic flood
 ```
 

@@ -12,11 +12,24 @@ docker-compose up -d
 Now run `mvn clean compile`
 
 2- Go to kafka folder and run kafka-topics
+
+*Windows*
+
 ```
 ./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic latency
 
 ./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+--replication-factor 2 --partitions 3 --topic throughput
+```
+
+*Unix*
+
+```
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+--replication-factor 2 --partitions 3 --topic latency
+
+./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
 --replication-factor 2 --partitions 3 --topic throughput
 ```
 

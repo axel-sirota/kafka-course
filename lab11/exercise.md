@@ -16,6 +16,8 @@ Now run `mvn clean compile`
 
 4- Run in seperate tabs the Producer, the Windowing Streams Application, and also run a consumer:
 
+*Windows*
+
 ```
 kafka-console-consumer.bat \
   --bootstrap-server broker-1:9092 \

@@ -66,6 +66,11 @@ To see if it worked, open up the Command Prompt and type mvn -v and see if it pr
 
 `choco install terraform`
 
+**AWS CLI (for cloud deployments)**
+
+1) Download and run the MSI AWS CLI installer: https://awscli.amazonaws.com/AWSCLIV2.msi
+2) Verify running in any terminal: `aws --version`
+
 ### If using Java API to insteract with Kafka
 
 - You are done!
@@ -123,6 +128,14 @@ export JAVA_HOME=`/usr/libexec/java_home -v WHAT_EVER_VERSION_YOU_HAVE`
 1) Run `brew tap hashicorp/tap`
 2) Run `brew install hashicorp/tap/terraform`
 
+**AWS CLI (for cloud deployments)**
+
+1) Run:
+```
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+2) Verify running in any terminal: `aws --version`
 
 ### If using Java API to insteract with Kafka
 
@@ -182,6 +195,18 @@ export JAVA_HOME=`/usr/libexec/java_home -v WHAT_EVER_VERSION_YOU_HAVE`
 2) Run `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`
 3) Run `sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`
 4) Run `sudo apt-get update && sudo apt-get install terraform`
+
+
+**AWS CLI (for cloud deployments)**
+
+1) Run:
+```
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+2) Verify running in any terminal: `aws --version`
+
 
 ### If using Java API to insteract with Kafka
 

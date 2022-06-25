@@ -21,24 +21,28 @@ public class Producer {
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, DoubleSerializer.class.getName());
 		KafkaProducer<String, Double> producer = new KafkaProducer<>(props);
-		double value = Math.floor(Math.random()*10+1);
-		String[] disasters = {"flood", "hurricane"};
-		int idx = new Random().nextInt(disasters.length);
-		String key = (disasters[idx]);
-		ProducerRecord<String, Double> producerRecord = new ProducerRecord<>(key, key, value);
+		while (true) {
+			double value = Math.floor(Math.random()*10+1);
+			String[] disasters = {"flood", "hurricane"};
+			int idx = new Random().nextInt(disasters.length);
+			String key = (disasters[idx]);
+			ProducerRecord<String, Double> producerRecord = new ProducerRecord<>(key, key, value);
 
-		log.info("Sending message with key " + key + " to Kafka");
+			log.info("Sending message with key " + key + " to Kafka");
 
-		producer.send(producerRecord, (metadata, e) -> {
-			if (metadata != null) {
-				System.out.println(producerRecord.key());
-				System.out.println(producerRecord.value());
-			}
-		});
-		producer.flush();
-		producer.close();
-
-		log.info("Successfully produced messages to " + key + " topic");
-
+			producer.send(producerRecord, (metadata, e) -> {
+				if (metadata != null) {
+					System.out.println(producerRecord.key());
+					System.out.println(producerRecord.value());
+					System.out.println(producerRecord.partition());
+					// System.out.println(producerRecord.offset());
+				}
+			});
+			producer.flush();
+			log.info("Successfully produced messages to " + key + " topic");
 		}
+		// producer.close();
+
+
+	}
 }

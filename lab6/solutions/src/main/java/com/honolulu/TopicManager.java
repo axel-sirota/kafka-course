@@ -1,4 +1,4 @@
-package com.pluralsight.streaming.admin;
+package com.honolulu;
 
 import org.apache.kafka.clients.admin.*;
 import org.apache.kafka.common.TopicPartition;
@@ -28,12 +28,12 @@ public class TopicManager {
         // log.info("Successfully deleted the " + DELIVERIES_TOPIC + " topic!");
 
         // Create Topic
-        // int partitions = 1;
-        // short replicationFactor = 3;
-        // NewTopic deliveriesTopic = new NewTopic(DELIVERIES_TOPIC, partitions, replicationFactor);
-        // CreateTopicsResult topics = adminClient.createTopics(List.of(deliveriesTopic));
-        // topics.all().get();
-        // log.info("Successfully created the " + DELIVERIES_TOPIC + " topic!");
+        int partitions = 1;
+        short replicationFactor = 3;
+        NewTopic deliveriesTopic = new NewTopic(DELIVERIES_TOPIC, partitions, replicationFactor);
+        CreateTopicsResult topics = adminClient.createTopics(List.of(deliveriesTopic));
+        topics.all().get();
+        log.info("Successfully created the " + DELIVERIES_TOPIC + " topic!");
 
         // Describe Topic
         // DescribeTopicsResult describeTopicsResult = adminClient.describeTopics(List.of(DELIVERIES_TOPIC));

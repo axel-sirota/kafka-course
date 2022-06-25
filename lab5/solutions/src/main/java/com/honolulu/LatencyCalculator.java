@@ -32,7 +32,7 @@ public class LatencyCalculator {
         consumer.subscribe(Collections.singletonList(DELIVERIES_TOPIC));
 
         while (true) {
-            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1));
             long currentTime = System.currentTimeMillis();
             records.records(DELIVERIES_TOPIC)
                 .forEach(record -> log.info("Latency: "  + (currentTime- record.timestamp()) + " ms"));

@@ -28,6 +28,18 @@ kafka-console-consumer.bat \
   --property key.separator=,
 ```
 
+*Unix*
+
+```
+kafka-console-consumer.sh \
+  --bootstrap-server broker-1:9092 \
+  --topic RawTempReadings --from-beginning \
+  --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \
+  --value-deserializer org.apache.kafka.common.serialization.IntegerDeserializer \
+  --property print.key=true \
+  --property key.separator=,
+```
+
 5- Create another Streams application that ensures all readings are between -50 and 130 degrees and sends them into a new topic `ValidatedTempReadings`
 
 6- Create a seperate console consumer into that topic `ValidatedTempReadings` to verify your work was succesful.

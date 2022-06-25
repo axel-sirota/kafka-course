@@ -2,6 +2,8 @@
 
 ## Windows
 
+### Core requirements regardless of language to use
+
 **Docker for Desktop**:
 
 1) Download and install from https://www.docker.com/products/docker-desktop 
@@ -58,7 +60,35 @@ To see if it worked, open up the Command Prompt and type mvn -v and see if it pr
 
 4) You can run any of the bat scripts that you need in the course. I suggest adding these folder to your PATH so you can run it from everywhere.
 
+**Terraform (for cloud deployments)**
+
+1) The best way is to use Chocolatey (https://chocolatey.org/install) and run:
+
+`choco install terraform`
+
+### If using Java API to insteract with Kafka
+
+- You are done!
+
+### If using JS to interact with Kafka via Kafka JS
+
+**Node**
+
+1) Install Node from the Node web installer page https://nodejs.org/en/download/
+2) Use npm to install Kafka JS
+
+`npm install kafkajs`
+
+### If using Python to insteract with Kafka via Kafka Python
+
+1) Use pip to install Kafka-python
+
+`pip install kafka-python`
+
 ## Mac
+
+### Core requirements regardless of language to use
+
 
 **Docker for Desktop:**
 
@@ -87,3 +117,87 @@ export JAVA_HOME=`/usr/libexec/java_home -v WHAT_EVER_VERSION_YOU_HAVE`
 1) Download: https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz 
 2) `tar xvfz ~/Downloads/kafka_2.13-3.0.0.tgz`
 3) Move that folder wherever you like :) 
+
+**Terraform (for cloud deployments)**
+
+1) Run `brew tap hashicorp/tap`
+2) Run `brew install hashicorp/tap/terraform`
+
+
+### If using Java API to insteract with Kafka
+
+- You are done!
+
+### If using JS to interact with Kafka via Kafka JS
+
+**Node**
+
+1) Install Node from the Node web installer page https://nodejs.org/en/download/
+2) Use npm to install Kafka JS
+
+`npm install kafkajs`
+
+### If using Python to insteract with Kafka via Kafka Python
+
+1) Use pip to install Kafka-python
+
+`pip install kafka-python`
+
+## Linux (Debian)
+
+### Core requirements regardless of language to use
+
+
+**Docker for Desktop:**
+
+1) Download and install from https://docs.docker.com/desktop/linux/install/
+
+**Java 11**
+
+1) `sudo apt install openjdk-11-jdk`
+1') Verify:
+
+```
+ /usr/libexec/java_home -V
+```
+
+2) Set JAVA_HOME: 
+```
+export JAVA_HOME=`/usr/libexec/java_home -v WHAT_EVER_VERSION_YOU_HAVE`
+```
+
+**Maven 3**
+
+1) `sudo apt-get install maven`
+
+**Kafka**
+
+1) Download: https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz 
+2) `tar xvfz ~/Downloads/kafka_2.13-3.0.0.tgz`
+3) Move that folder wherever you like :) 
+
+**Terraform (for cloud deployments)**
+
+1) Run `sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl`
+2) Run `curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -`
+3) Run `sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"`
+4) Run `sudo apt-get update && sudo apt-get install terraform`
+
+### If using Java API to insteract with Kafka
+
+- You are done!
+
+### If using JS to interact with Kafka via Kafka JS
+
+**Node**
+
+1) Install Node from the Node web installer page https://nodejs.org/en/download/
+2) Use npm to install Kafka JS
+
+`npm install kafkajs`
+
+### If using Python to insteract with Kafka via Kafka Python
+
+1) Use pip to install Kafka-python
+
+`pip install kafka-python`

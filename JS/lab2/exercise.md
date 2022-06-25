@@ -12,14 +12,14 @@ docker-compose up -d
 *Windows*
 
 ```
-./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --bootstrap-server localhost:9092 \
 --replication-factor 1 --partitions 3 --topic my_orders
 ```
 
 *Unix*
 
 ```
-./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 \
 --replication-factor 1 --partitions 3 --topic my_orders
 ```
 
@@ -32,14 +32,14 @@ docker-compose up -d
 *Windows*
 
 ```
-./bin/windows/kafka-reassign-partitions.bat --zookeeper localhost:2181 \
+./bin/windows/kafka-reassign-partitions.bat --bootstrap-server localhost:9092 \
 --reassignment-json-file increase_replication.json --execute
 ```
 
 *Unix*
 
 ```
-./bin/kafka-reassign-partitions.sh --zookeeper localhost:2181 \
+./bin/kafka-reassign-partitions.sh --bootstrap-server localhost:9092 \
 --reassignment-json-file increase_replication.json --execute
 ```
 

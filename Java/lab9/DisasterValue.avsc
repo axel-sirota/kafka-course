@@ -1,0 +1,8 @@
+{
+  "fields": [
+      // Fill
+  ],
+  "name": "DisasterValue",
+  "namespace": "com.honolulu.model",
+  "type": "record"
+}

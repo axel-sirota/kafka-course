@@ -22,28 +22,28 @@ Now run `mvn clean compile`
 *Windows*
 
 ```
-./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic hurricane
 
-./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic flood
 ```
 
 *Unix*
 
 ```
-./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic hurricane
 
-./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic flood
 ```
 
-3- Adapt the Producer to produce randomly to any of the two topics above with an intensity of the disaster between 1 and 10
+3- Adapt the Producer to produce randomly to any of the two topics above with an intensity of the disaster between 1 and 10 and key the topic as well.
 
 4- Create a consumer called Consumer inside of a package com.honolulu that takes as argument the topic to consume to. Make each consumer in the same consumer group.
 
-5- Start 2 consumer for hurricanes with the command:
+5- Start 2 consumers for hurricanes with the command:
 
 ```
 mvn clean compile exec:java -Dexec.mainClass="com.honolulu.Consumer" -Dexec.cleanupDaemonThreads=false -Dexec.args="hurricane"
@@ -59,9 +59,11 @@ These can be in 3 seperate tabs.
 
 6- Instantiate the Producer: `mvn exec:java -Dexec.mainClass="com.honolulu.Producer" -Dexec.cleanupDaemonThreads=false`
 
-7- Verify each correct consumer got the correct message.
+7- Verify each correct consumer got the correct message. Did all consumer got the same amount of messages? What happened? How can we balance this?
 
-8- Shut down everything:
+8- Kill the Consumer on the hurricane topic and start another one on the flood topic. Check the lgs for the partition rebalance.
+
+9- Shut down everything:
 
 ```
 docker-compose down

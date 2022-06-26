@@ -11,8 +11,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Properties;
 import java.util.Random;
 
-public class Producer {
-	private static final Logger log = LoggerFactory.getLogger(Producer.class);
+public class ProducerBalanced {
+	private static final Logger log = LoggerFactory.getLogger(ProducerBalanced.class);
 
 	public static void main(String[] args) {
 
@@ -27,10 +27,11 @@ public class Producer {
 			double value = Math.floor(Math.random()*10+1);
 			String[] disasters = {"flood", "hurricane"};
 			int idx = new Random().nextInt(disasters.length);
-			String key = (disasters[idx]);
-			ProducerRecord<String, Double> producerRecord = new ProducerRecord<>(key, key, value);
+			String disaster = (disasters[idx]);
+			Integer partition = new Random().nextInt(3);
+			ProducerRecord<String, Double> producerRecord = new ProducerRecord<>(disaster, partition, disaster, value);
 
-			log.info("Sending message with key " + key + " to Kafka");
+			log.info("Sending message to topic " + disaster + " and partition " + partition + " to Kafka");
 
 			producer.send(producerRecord, (metadata, e) -> {
 				if (metadata != null) {
@@ -40,7 +41,7 @@ public class Producer {
 				}
 			});
 			producer.flush();
-			log.info("Successfully produced messages to " + key + " topic");
+			log.info("Successfully produced messages to " + disaster + " topic");
 		}
 	}
 }

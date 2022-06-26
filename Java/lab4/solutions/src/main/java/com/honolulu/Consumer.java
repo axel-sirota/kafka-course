@@ -20,10 +20,10 @@ public class Consumer {
     public static void main(String[] args) {
 
         Properties props = new Properties();
-        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "broker-1:9092");
+        props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, DoubleDeserializer.class.getName());
-        props.put(ConsumerConfig.GROUP_ID_CONFIG, args[0] + ".consumer2");
+        props.put(ConsumerConfig.GROUP_ID_CONFIG, args[0] + ".consumer");
 
         KafkaConsumer<String, Double> consumer = new KafkaConsumer<>(props);
 

@@ -16,17 +16,15 @@ public class HighThroughputProducer {
 	public static void main(String[] args) {
 
 		Properties props = new Properties();
-		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://broker-1:9092,http://broker-2:9093");
+		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://localhost:9092,http://localhost:9093");
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-
 		props.put(ProducerConfig.ACKS_CONFIG, "0");
-		props.put(ProducerConfig.LINGER_MS_CONFIG, "5");
-		props.put(ProducerConfig.BATCH_SIZE_CONFIG, "13864");
-		props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "10");
+		props.put(ProducerConfig.LINGER_MS_CONFIG, "10");
+		props.put(ProducerConfig.BATCH_SIZE_CONFIG, "16864");
+		props.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, "5");
 
 		KafkaProducer<String, String> producer = new KafkaProducer<>(props);
-
 		long startTime = System.currentTimeMillis(); //fetch starting time
 		long i = 0;
 		while((System.currentTimeMillis() - startTime) < 10000) {
@@ -35,12 +33,8 @@ public class HighThroughputProducer {
 			producer.send(producerRecord);
 			i++;
 		}
-
-
 		producer.flush();
 		producer.close();
-
 		log.info("Successfully produced " + i + "messages in 10 seconds");
-
 		}
 }

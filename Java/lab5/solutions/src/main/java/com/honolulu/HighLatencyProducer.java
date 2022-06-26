@@ -36,11 +36,8 @@ public class HighLatencyProducer {
 			i++;
 		}		
 		long timeTaken = System.currentTimeMillis() - now;
-		log.info("Took " +  timeTaken + " ms time");
-
+		log.info("Took " +  timeTaken + " ms time to produce 10000 messages");
+		log.info("Throughput" +  1000*10000/timeTaken + " messages per second");
 		producer.close();
-
-		log.info("Successfully produced messages");
-
 		}
 }

@@ -22,7 +22,7 @@ public class LowLatencyProducer {
 
 		props.put(ProducerConfig.ACKS_CONFIG, "0");
 		props.put(ProducerConfig.LINGER_MS_CONFIG, "0");
-		props.put(ProducerConfig.BATCH_SIZE_CONFIG, "16384");
+		props.put(ProducerConfig.BATCH_SIZE_CONFIG, "512");
 
 		KafkaProducer<String, String> producer = new KafkaProducer<>(props);
 
@@ -37,10 +37,8 @@ public class LowLatencyProducer {
 			i++;
 		}
 		long timeTaken = System.currentTimeMillis() - now;
-		log.info("Took " +  timeTaken + " ms time");
+		log.info("Took " +  timeTaken + " ms time to produce 10000 messages");
+		log.info("Throughput" +  1000*10000/timeTaken + " messages per second");
 		producer.close();
-
-		log.info("Successfully produced messages");
-
 		}
 }

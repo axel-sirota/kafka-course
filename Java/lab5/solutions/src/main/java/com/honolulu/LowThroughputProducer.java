@@ -16,7 +16,7 @@ public class LowThroughputProducer {
 	public static void main(String[] args) {
 
 		Properties props = new Properties();
-		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://broker-1:9092,http://broker-2:9093");
+		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://localhost:9092,http://localhost:9093");
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
@@ -35,11 +35,8 @@ public class LowThroughputProducer {
 			producer.send(producerRecord);
 			i++;
 		}
-
-
 		producer.flush();
 		producer.close();
-
 		log.info("Successfully produced " + i + "messages in 10 seconds");
 
 		}

@@ -26,28 +26,20 @@ Now run `mvn clean compile`
 *Windows*
 
 ```
-./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic my_orders
 ```
 
 *Unix*
 
 ```
-./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic my_orders
 ```
 
+3- Create a producer called Main inside of a package (ie, create a file Main.java inside com/{packageName})
 
-3- Add the following two lines to the /etc/hosts files:
-
-127.0.0.1 broker-1
-127.0.0.1 broker-2
-
-In Unix this should be in the file `/etc/hosts` and in Windows the file `c:\Windows\System32\Drivers\etc\hosts`
-
-4- Create a producer called Main inside of a package com.honolulu
-
-5-  Create a public static void main(String[] args) application, and create a array of states in the United States, using the following String
+4-  Create a public static void main(String[] args) application, and create a array of states in the United States, using the following String
 
 ```
 String stateString =
@@ -70,7 +62,7 @@ String stateString =
 
 ```
 ./bin/windows/kafka-console-consumer.bat \
-  --bootstrap-server broker-2:9092 \
+  --bootstrap-server localhost:9092 \
   --topic my_orders --from-beginning \
   --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \
   --value-deserializer org.apache.kafka.common.serialization.DoubleDeserializer \
@@ -82,7 +74,7 @@ String stateString =
 
 ```
 ./bin/kafka-console-consumer.sh \
-  --bootstrap-server broker-2:9092 \
+  --bootstrap-server localhost:9092 \
   --topic my_orders --from-beginning \
   --key-deserializer org.apache.kafka.common.serialization.StringDeserializer \
   --value-deserializer org.apache.kafka.common.serialization.DoubleDeserializer \

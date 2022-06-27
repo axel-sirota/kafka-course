@@ -18,7 +18,7 @@ public class TopicManager {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
 
         Properties props = new Properties();
-        props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "broker-1:9092,broker-2:9093");
+        props.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092,localhost:9093");
 
         AdminClient adminClient = KafkaAdminClient.create(props);
 
@@ -28,23 +28,23 @@ public class TopicManager {
         // log.info("Successfully deleted the " + DELIVERIES_TOPIC + " topic!");
 
         // Create Topic
-        int partitions = 1;
-        short replicationFactor = 3;
+        int partitions = 2;
+        short replicationFactor = 2;
         NewTopic deliveriesTopic = new NewTopic(DELIVERIES_TOPIC, partitions, replicationFactor);
         CreateTopicsResult topics = adminClient.createTopics(List.of(deliveriesTopic));
         topics.all().get();
         log.info("Successfully created the " + DELIVERIES_TOPIC + " topic!");
 
         // Describe Topic
-        // DescribeTopicsResult describeTopicsResult = adminClient.describeTopics(List.of(DELIVERIES_TOPIC));
-        // Map<String, TopicDescription> stringTopicDescriptionMap = describeTopicsResult.all().get();
-        // log.info("Topic description: " + stringTopicDescriptionMap);
+        DescribeTopicsResult describeTopicsResult = adminClient.describeTopics(List.of(DELIVERIES_TOPIC));
+        Map<String, TopicDescription> stringTopicDescriptionMap = describeTopicsResult.all().get();
+        log.info("Topic description: " + stringTopicDescriptionMap);
 
         // Delete Records
-        TopicPartition topicPartition = new TopicPartition(DELIVERIES_TOPIC, 0);
-        RecordsToDelete recordsToDelete = RecordsToDelete.beforeOffset(123);
-        DeleteRecordsResult deleteRecordsResult = adminClient.deleteRecords(Map.of(topicPartition, recordsToDelete));
-        deleteRecordsResult.all().get();
+        // TopicPartition topicPartition = new TopicPartition(DELIVERIES_TOPIC, 0);
+        // RecordsToDelete recordsToDelete = RecordsToDelete.beforeOffset(123);
+        // DeleteRecordsResult deleteRecordsResult = adminClient.deleteRecords(Map.of(topicPartition, recordsToDelete));
+        // deleteRecordsResult.all().get();
 
 
 

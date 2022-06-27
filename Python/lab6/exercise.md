@@ -1,0 +1,26 @@
+## Lab 6
+
+0- In this folder run:
+
+```
+docker-compose up -d
+```
+
+1- Copy the directory structure we had in the previous labs
+
+2- Create a simple main application to use the KafkaAdmin
+
+3- Create with the CLI a topic `deliveries`
+
+4- Delete it with the KafkaAdmin client
+
+5- Create again the topic with the client this time. You will not be able to describe it since it is not yet supported
+
+6- Create a consumer and describe it by group Id
+
+7- Shut down everything:
+
+```
+docker-compose down
+```
+

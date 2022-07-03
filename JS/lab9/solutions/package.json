@@ -1,0 +1,17 @@
+{
+  "name": "solutions",
+  "version": "1.0.0",
+  "description": "",
+  "main": "consumer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@kafkajs/confluent-schema-registry": "^3.2.1",
+    "kafkajs": "^2.1.0",
+    "kafkajs-avro": "^1.0.4"
+  }
+}

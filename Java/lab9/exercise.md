@@ -59,7 +59,7 @@ props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
 props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
 ```
 
-7- Execute both classes with mvn:exec as we have been doing and verify this sends actual objects serialized.
+7- Execute both classes with mvn:exec as we have been doing and verify this sends actual objects serialized. Notice that under the hood the schema was sent to the Schema Registry, validate by hitting its REST endpoint
 
 8- Shut down everything:
 

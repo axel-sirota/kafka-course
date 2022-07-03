@@ -1,0 +1,7 @@
+{
+  "fields": [
+      // Fill
+  ],
+  "name": "DisasterValue",
+  "type": "record"
+}

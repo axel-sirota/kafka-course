@@ -43,23 +43,6 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
   
-  broker-3:
-    image: confluentinc/cp-kafka:5.4.1
-    hostname: broker-3
-    container_name: broker-3
-    depends_on:
-      - zookeeper
-    ports:
-      - "9094:9094"
-    environment:
-      KAFKA_BROKER_ID: 3
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker-3:29094,PLAINTEXT_HOST://:9094
-      KAFKA_LISTENERS: PLAINTEXT://broker-3:29094,PLAINTEXT_HOST://:9094
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
-  
   rest-proxy:
     image: confluentinc/cp-kafka-rest:5.4.1
     ports:
@@ -71,7 +54,7 @@ services:
     container_name: rest-proxy
     environment:
       KAFKA_REST_HOST_NAME: rest-proxy
-      KAFKA_REST_BOOTSTRAP_SERVERS: 'broker-1:29092,broker-2:29093,broker-3:29094'
+      KAFKA_REST_BOOTSTRAP_SERVERS: 'broker-1:29092,broker-2:9093'
       KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
 
   schema-registry:
@@ -86,4 +69,21 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
-
+  
+  mongo:
+    image: mongo:4.4
+    hostname: mongo
+    container_name: mongo
+    ports:
+      - 27017:27017
+  
+  postgres:
+    image: postgres:13.2
+    hostname: postgres
+    container_name: postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=postgres_db
+      - POSTGRES_USER=admin_db
+      - POSTGRES_PASSWORD=admin_12345678

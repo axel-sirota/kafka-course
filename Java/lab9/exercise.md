@@ -15,14 +15,14 @@ Now run `mvn clean compile`
 *Windows*
 
 ```
-./bin/windows/kafka-topics.bat --create --zookeeper localhost:2181 \
+./bin/windows/kafka-topics.bat --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic disasters
 ```
 
 *Unix*
 
 ```
-./bin/kafka-topics.sh --create --zookeeper localhost:2181 \
+./bin/kafka-topics.sh --create --bootstrap-server localhost:9092 \
 --replication-factor 2 --partitions 3 --topic disasters
 ```
 

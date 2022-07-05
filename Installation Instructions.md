@@ -119,7 +119,7 @@ export JAVA_HOME=`/usr/libexec/java_home -v WHAT_EVER_VERSION_YOU_HAVE`
 
 **Kafka**
 
-1) Download: https://dlcdn.apache.org/kafka/3.0.0/kafka_2.13-3.0.0.tgz 
+1) Download: https://archive.apache.org/dist/kafka/3.0.0/kafka_2.13-3.0.0.tgz
 2) `tar xvfz ~/Downloads/kafka_2.13-3.0.0.tgz`
 3) Move that folder wherever you like :) 
 

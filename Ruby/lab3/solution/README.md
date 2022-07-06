@@ -19,16 +19,19 @@ If bundler is not being used to manage dependencies, install the gem by executin
 In one terminal, Launch the dockerized kafka instance via:
 
 ```
-cd kafka-course/Ruby/lab3
+cd Ruby/lab3
 docker-compose up -d
 ```
 
 In another terminal, launch the demo
 
 ```
-cd kafka-course/Ruby/lab3/solution
+cd Ruby/lab3/solution
+bundle
 ruby lib/kafka_example.rb
 ```
+
+For example output of `ruby lib/kafka_example.rb`, see: `Ruby/lab3/solution/out.log`
 
 ## Development
 

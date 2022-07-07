@@ -3,7 +3,7 @@
 require_relative "./kafka_api"
 
 module KafkaExample
-  class ExampleUsStates
+  class Lab3ExampleUsStates
     TOPIC_DEFAULT = 'my_orders2'
     KAFKA = KafkaApi.kafka
 

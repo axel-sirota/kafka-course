@@ -15,7 +15,7 @@ cp -R ../lab3/exercise exercise
 
 Note: In Windows do it with `copy` instead of `cp` and `\` instead of `/`.
 
-Now run `mvn clean compile`
+Use the `python` version with the `kafka-python` installed
 
 2- Go to kafka folder and run kafka-topics
 

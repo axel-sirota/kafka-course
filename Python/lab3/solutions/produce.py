@@ -20,7 +20,7 @@ state_string = "AK,AL,AZ,AR,CA,CO,CT,DE,FL,GA," \
        "NM,NY,NC,ND,OH,OK,OR,PA,RI,SC," \
        "SD,TN,TX,UT,VT,VA,WA,WV,WI,WY"
 state_list = state_string.split(',')
-TOPIC = "my_orders4"
+TOPIC = "my_orders"
 for _ in range(25):
     key = random.choice(state_list)
     value = str(random.randint(10, 10000))

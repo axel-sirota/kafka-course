@@ -8,6 +8,6 @@ module KafkaExample
   class Error < StandardError; end
 end
 
-example = KafkaExample::ExampleUsStates.new
+example = KafkaExample::Lab3ExampleUsStates.new
 example.run
 example.log

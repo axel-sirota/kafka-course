@@ -3,10 +3,10 @@
 require_relative "./kafka_api"
 
 module KafkaExample
-  class Lab4ExampleUsStates
+  class Lab5Performance
     # TOPIC_DEFAULT = 'my_orders2'
-    TOPICS = ['flood', 'hurricane']
-    CLIENT_ID_DEFAULT = 'lab4-producer'
+    TOPICS = ['latency', 'throughput']
+    CLIENT_ID_DEFAULT = 'lab5-producer'
     KAFKA = KafkaApi.kafka(client_id: CLIENT_ID_DEFAULT)
 
     def run
@@ -19,14 +19,29 @@ module KafkaExample
       }
     end
 
+    def producer_all
+      KafkaExample::KafkaApi.producer(required_acks: :all)
+    end
+
+    def producer_0
+      KafkaExample::KafkaApi.producer(required_acks: 0)
+    end
+
+    def producer_1
+      KafkaExample::KafkaApi.producer(required_acks: 1)
+    end
+
     def generate_message
       puts "** #{self.class.name}##{__method__}"
 
-      TOPICS.each do |topic|
-        val = rand_val
-        KAFKA.deliver_message("#{val}", topic: topic)
+      [producer_all,producer_0,producer_1].each do |producer|
+        TOPICS.each do |topic|
+          val = rand_val
+          producer.produce("#{val}", topic: topic)
+          producer.deliver_messages
 
-        puts "#{Time.now} #{topic} #{val}"        
+          puts "#{Time.now} #{topic} #{val}"        
+        end
       end
     end
 

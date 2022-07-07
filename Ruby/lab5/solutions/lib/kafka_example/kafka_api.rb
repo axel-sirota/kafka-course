@@ -14,6 +14,13 @@ module KafkaExample
       Kafka.new(brokers, client_id: client_id, logger: logger)
     end
 
+    def self.producer(required_acks: :all)
+      # `required_acks: :all`: This is the default: all replicas must acknowledge.
+      # `required_acks: 0`: This is fire-and-forget: messages can easily be lost.
+      # `required_acks: 1`: This only waits for the leader to acknowledge.
+      producer = kafka.producer(required_acks: required_acks)
+    end
+
     def self.log(topic = TOPIC_DEFAULT)
       puts "** #{self.class.name}##{__method__}"
 

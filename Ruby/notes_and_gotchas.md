@@ -21,7 +21,5 @@
     $ sudo netstat -ltnp | grep 2181
     tcp6       0      0 :::2181                 :::*                    LISTEN      1568/java   
     $ sudo kill 1568
-
-    $ sudo netstat -ltnp | grep 2181
     
     ```

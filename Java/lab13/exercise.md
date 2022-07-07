@@ -10,7 +10,7 @@ docker-compose up -d
 
 Now run `mvn clean compile`
 
-2- Modify the last lab to produce Disasters from the AVRO lab
+2- Modify the last lab to produce Disasters from the AVRO lab (But instead of using AVRO, which is difficult to merge with Streams, use KafkaJSONSerializer)
 
 3- Create a Streams app that filters the disasters such that the intensity is in the lower 75%.
 

@@ -1,0 +1,62 @@
+---
+version: '3'
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:5.4.1
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+
+  broker-1:
+    image: confluentinc/cp-kafka:5.4.1
+    hostname: broker-1
+    container_name: broker-1
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+      - 29092:29092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_IN_NETWORK:PLAINTEXT,LISTENER_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_IN_NETWORK://broker-1:29092,LISTENER_HOST://localhost:9092
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_IN_NETWORK
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+  broker-2:
+    image: confluentinc/cp-kafka:5.4.1
+    hostname: broker-2
+    container_name: broker-2
+    depends_on:
+      - zookeeper
+    ports:
+      - 9093:9093
+      - 29093:29093
+    environment:
+      KAFKA_BROKER_ID: 2
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_IN_NETWORK:PLAINTEXT,LISTENER_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: LISTENER_IN_NETWORK://broker-2:29093,LISTENER_HOST://localhost:9093
+      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_IN_NETWORK
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+  
+  rest-proxy:
+    image: confluentinc/cp-kafka-rest:5.4.1
+    ports:
+      - "8082:8082"
+    depends_on:
+      - zookeeper
+      - broker-1
+      - broker-2
+    hostname: rest-proxy
+    container_name: rest-proxy
+    environment:
+      KAFKA_REST_HOST_NAME: rest-proxy
+      KAFKA_REST_BOOTSTRAP_SERVERS: 'broker-1:29092,broker-2:29093'
+      KAFKA_REST_LISTENERS: "http://0.0.0.0:8082"
+

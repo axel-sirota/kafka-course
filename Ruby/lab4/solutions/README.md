@@ -26,7 +26,7 @@ docker-compose up -d
 In another terminal, launch the demo
 
 ```
-cd Ruby/lab3/solution
+cd Ruby/lab3/solutions
 bundle
 ruby lib/kafka_example.rb
 ```

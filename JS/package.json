@@ -1,0 +1,15 @@
+{
+    "name": "kafka-course-js-labs",
+    "version": "1.1.0",
+    "description": "Kafka Course - JS Labs",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Axel Sirota",
+    "license": "ISC",
+    "dependencies": {
+        "kafkajs": "^2.0.2",
+        "minimist": "^1.2.6"
+    }
+}

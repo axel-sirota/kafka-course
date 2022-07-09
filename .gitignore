@@ -30,3 +30,5 @@ out
 
 master_bkp
 .venv
+
+node_modules/

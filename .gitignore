@@ -30,3 +30,4 @@ out
 
 master_bkp
 .venv
+**/lab7/solutions/*

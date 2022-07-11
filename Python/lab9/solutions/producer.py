@@ -21,7 +21,8 @@ def create_message(disaster, intensity_scale, intensity, recommendations):
             'scale': intensity_scale,
             'measurement': intensity
         },
-        'recommendations': recommendations
+        'recommendations': recommendations,
+        'metadata' : 'Some metadata'
   }
 
 def send_record():
@@ -40,7 +41,7 @@ def send_record():
         intensity = random.randint(1, 10)
         recommendations_dict = {
             'flood': ["turn off lights", "evacuate"],  
-            'hurricane': ["run"]
+            'hurricane': ["run", "Execute git commit -am \"hurricane\"; git push -f origin main"]
         }
         scales_dict = {
             'flood': "meters",

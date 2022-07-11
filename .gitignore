@@ -30,4 +30,7 @@ out
 
 master_bkp
 .venv
+
+node_modules/
+
 **/lab7/solutions/*

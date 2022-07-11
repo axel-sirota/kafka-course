@@ -41,6 +41,7 @@ public class Producer {
 			});
 			producer.flush();
 			log.info("Successfully produced messages to " + key + " topic");
+			break;
 		}
 	}
 }

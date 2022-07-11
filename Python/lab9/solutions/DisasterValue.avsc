@@ -33,6 +33,14 @@
           }
         ]
       }
+    },
+    {
+      "name": "metadata",
+      "type": [
+        "string",
+        "null"
+      ],
+      "default": " "
     }
   ],
   "name": "DisasterValue",

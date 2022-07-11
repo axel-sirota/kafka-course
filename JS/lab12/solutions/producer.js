@@ -19,7 +19,7 @@ const sensors = ['sensor_1', 'sensor_2']
 const getIntensity = () => Math.floor(Math.random()* 200 -20)
 const createMessage = (disaster, num) => ({
   key: `${disaster}`,
-  value: `${num}`,
+  value: num,
 })
 const sendMessage = () => {
   topic = "RawTempReadings";

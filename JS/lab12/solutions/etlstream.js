@@ -12,8 +12,8 @@ const stream = kafkaStreams.getKStream();
 
 stream
   .from("RawTempReadings")
-  .filter(kv => parseInt(kv.value, 10) > -50)
-  .filter(kv => parseInt(kv.value, 10) < 130)
+  .filter(kv => Number(kv.value) > -50)
+  .filter(kv => Number(kv.value) < 130)
   .tap(kv => console.log(kv))
   .to("ValidatedTempReadings");
 

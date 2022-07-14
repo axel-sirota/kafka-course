@@ -67,3 +67,8 @@ Note: You can use POSTman or any other REST request facility tooling with the Op
 
 8- Shut down kafka-console-producer.sh and kafka-console-consumer.sh by using CTRL+C
 
+9 - Shut down the docker compose cluster:
+
+```
+docker compose down
+```

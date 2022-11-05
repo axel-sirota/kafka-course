@@ -14,7 +14,7 @@ import java.util.Random;
 public class Producer {
 	private static final Logger log = LoggerFactory.getLogger(Producer.class);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException  {
 
 		Properties props = new Properties();
 		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://localhost:9092,http://localhost:9093");
@@ -41,7 +41,7 @@ public class Producer {
 			});
 			producer.flush();
 			log.info("Successfully produced messages to " + key + " topic");
-			break;
+			Thread.sleep(100);
 		}
 	}
 }

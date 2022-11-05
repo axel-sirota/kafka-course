@@ -14,7 +14,7 @@ import java.util.Random;
 public class ProducerBalanced {
 	private static final Logger log = LoggerFactory.getLogger(ProducerBalanced.class);
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 
 		Properties props = new Properties();
 		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "http://localhost:9092,http://localhost:9093");
@@ -37,7 +37,7 @@ public class ProducerBalanced {
 				if (metadata != null) {
 					System.out.println(producerRecord.key());
 					System.out.println(producerRecord.value());
-					System.out.println(producerRecord.partition());
+					System.out.println(metadata.toString());
 				}
 			});
 			producer.flush();

@@ -17,7 +17,7 @@ public class Consumer {
 
     private static final Logger log = LoggerFactory.getLogger(Consumer.class);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException  {
 
         Properties props = new Properties();
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
@@ -40,5 +40,10 @@ public class Consumer {
 
     private static void processRecord(Double hurricane) {
         log.info("New alert received of intensity: " + hurricane);
+        try {
+            Thread.sleep(1000);    
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -30,7 +30,7 @@ public class Main {
 						"NM,NY,NC,ND,OH,OK,OR,PA,RI,SC," +
 						"SD,TN,TX,UT,VT,VA,WA,WV,WI,WY";
 		String[] stateArray = stateString.split(",");
-		for (int i = 0; i < 25; i++) {
+		for (int i = 0; i < 25000; i++) {
 			String key = stateArray[(int) Math.floor(Math.random()*(50))];
 			double value = Math.floor(Math.random()* (10000-10+1)+10);
 			ProducerRecord<String, Double> producerRecord =
@@ -42,9 +42,9 @@ public class Main {
 				if (metadata != null) {
 					System.out.println(producerRecord.key());
 					System.out.println(producerRecord.value());
+					System.out.println(metadata.toString());
 				}
 			});
-			Thread.sleep(random.nextInt(5000));
 		}
 		producer.flush();
 		producer.close();
